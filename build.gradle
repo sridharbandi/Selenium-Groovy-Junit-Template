@@ -1,0 +1,31 @@
+plugins {
+    id 'groovy'
+}
+
+group 'com.tech.selenium'
+version '1.0-SNAPSHOT'
+
+ext {
+    seleniumVersion = '3.12.0'
+    webdrivermanagerVersion = '2.2.1'
+    junitVersion = '4.12'
+    groovyVersion = '2.4.15'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+    compile "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    compile "io.github.bonigarcia:webdrivermanager:${webdrivermanagerVersion}"
+    testCompile "junit:junit:${junitVersion}"
+}
+
+test {
+    systemProperties System.properties
+    dependsOn 'cleanTest'
+}
+
+gradle.startParameter.continueOnFailure = true
